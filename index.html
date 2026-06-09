@@ -1,0 +1,1128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vui — Invest your money. Live for free. Build wealth together.</title>
+  <meta name="description" content="Vui is a quiet circle for the person who lives fully, invests boldly, and builds their wealth with the community who get it." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --cream:     #faf6ef;
+      --cream-2:   #f3ece0;
+      --ink:       #1a1a1a;
+      --ink-soft:  #5a544c;
+      --line:      rgba(26,26,26,.11);
+      --clay:      #b8755f;
+      --clay-deep: #8f5644;
+      --clay-pale: #f2e4dc;
+      --gold:      #c9a86a;
+      --serif:     'Cormorant Garamond', 'Tiempos Text', Georgia, serif;
+      --sans:      'Work Sans', ui-sans-serif, system-ui, -apple-system, sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--sans);
+      color: var(--ink);
+      background: var(--cream);
+      line-height: 1.75;
+      font-size: 17px;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    ::selection { background: var(--clay); color: var(--cream); }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 300;
+      background: rgba(250,246,239,.92);
+      backdrop-filter: saturate(140%) blur(14px);
+      -webkit-backdrop-filter: saturate(140%) blur(14px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 32px;
+      height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      font-family: var(--serif);
+      font-size: 22px;
+      letter-spacing: .03em;
+      color: var(--ink);
+      text-decoration: none;
+    }
+    .brand-logo { width: 26px; height: 26px; flex-shrink: 0; }
+    .nav-cta {
+      font-family: var(--sans);
+      font-size: 12px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      padding: 9px 20px;
+      border-radius: 999px;
+      border: 1px solid var(--ink);
+      color: var(--ink);
+      text-decoration: none;
+      transition: background .2s, color .2s;
+    }
+    .nav-cta:hover { background: var(--ink); color: var(--cream); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100svh;
+      background: var(--cream);
+      display: flex;
+      align-items: center;
+      padding: 120px 0 96px;
+      position: relative;
+      border-bottom: 1px solid var(--line);
+    }
+    .hero-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+    .hero .eyebrow {
+      font-family: var(--sans);
+      font-size: 11px;
+      letter-spacing: .26em;
+      text-transform: uppercase;
+      color: var(--clay);
+      margin-bottom: 36px;
+      display: block;
+    }
+    .hero h1 {
+      font-family: var(--serif);
+      font-size: clamp(44px, 7vw, 82px);
+      font-weight: 400;
+      line-height: 1.07;
+      letter-spacing: -.01em;
+      color: var(--ink);
+      max-width: 15ch;
+      margin-bottom: 36px;
+    }
+    .hero h1 em { font-style: italic; color: var(--clay); }
+    .hero-sub {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(18px, 2.2vw, 24px);
+      color: var(--ink-soft);
+      line-height: 1.55;
+      max-width: 34ch;
+      margin-bottom: 52px;
+    }
+    .btn-primary {
+      display: inline-block;
+      font-family: var(--sans);
+      font-size: 12px;
+      letter-spacing: .20em;
+      text-transform: uppercase;
+      padding: 14px 28px;
+      border: 1px solid var(--clay);
+      color: var(--clay);
+      text-decoration: none;
+      transition: background .2s, color .2s;
+    }
+    .btn-primary:hover { background: var(--clay); color: var(--cream); }
+    .scroll-hint {
+      position: absolute;
+      bottom: 32px; left: 32px;
+      opacity: .25;
+    }
+    .scroll-line {
+      width: 1px; height: 44px;
+      background: linear-gradient(to bottom, var(--clay), transparent);
+      animation: pulse 2.6s ease-in-out infinite;
+    }
+    @keyframes pulse { 0%,100%{opacity:.2} 50%{opacity:.9} }
+
+    /* ── TICKER ── */
+    .ticker {
+      background: var(--ink);
+      border-bottom: 1px solid rgba(201,168,106,.14);
+      overflow: hidden;
+    }
+    .ticker-track {
+      display: flex;
+      width: max-content;
+      animation: ticker 44s linear infinite;
+    }
+    @keyframes ticker { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+    .ticker-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 13px 36px;
+      font-family: var(--sans);
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: .04em;
+      color: rgba(255,255,255,.38);
+      white-space: nowrap;
+      border-right: 1px solid rgba(255,255,255,.05);
+    }
+    .ticker-dot {
+      width: 3px; height: 3px;
+      border-radius: 50%;
+      background: var(--gold);
+      flex-shrink: 0;
+    }
+    .ticker-em { color: var(--gold); font-weight: 500; }
+
+    /* ── MANIFESTO ── */
+    .manifesto {
+      background: var(--ink);
+      padding: 140px 32px 160px;
+      position: relative;
+    }
+    .manifesto::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(201,168,106,.4), transparent);
+    }
+    .manifesto::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(201,168,106,.4), transparent);
+    }
+    .manifesto-inner {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .manifesto .eyebrow {
+      font-size: 11px;
+      letter-spacing: .26em;
+      text-transform: uppercase;
+      color: rgba(201,168,106,.65);
+      margin-bottom: 56px;
+      display: block;
+    }
+    .manifesto-lead {
+      font-family: var(--serif);
+      font-size: clamp(24px, 3.2vw, 34px);
+      font-weight: 400;
+      color: #fff;
+      line-height: 1.45;
+      margin-bottom: 56px;
+      padding-bottom: 56px;
+      border-bottom: 1px solid rgba(201,168,106,.13);
+    }
+    .manifesto-lead em { font-style: italic; color: var(--gold); }
+    .manifesto-who {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(16px, 1.9vw, 20px);
+      color: rgba(255,255,255,.46);
+      line-height: 1.7;
+      padding: 20px 0 20px 26px;
+      border-bottom: 1px solid rgba(255,255,255,.04);
+      position: relative;
+    }
+    .manifesto-who::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+      font-style: normal;
+    }
+    .manifesto-who:last-of-type { margin-bottom: 64px; }
+    .manifesto-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-top: 1px solid rgba(201,168,106,.12);
+      border-left: 1px solid rgba(201,168,106,.12);
+      margin-bottom: 80px;
+    }
+    .manifesto-grid-item {
+      padding: 18px 22px;
+      border-right: 1px solid rgba(201,168,106,.12);
+      border-bottom: 1px solid rgba(201,168,106,.12);
+      font-family: var(--sans);
+      font-size: 12px;
+      color: rgba(255,255,255,.26);
+      letter-spacing: .06em;
+    }
+    .manifesto-pivot {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(18px, 2.2vw, 23px);
+      color: rgba(255,255,255,.50);
+      line-height: 1.75;
+      margin-bottom: 18px;
+    }
+    .manifesto-pivot em { font-style: normal; font-weight: 600; color: var(--gold); }
+    .manifesto-pivot + .manifesto-pivot {
+      margin-bottom: 96px;
+      padding-bottom: 96px;
+      border-bottom: 1px solid rgba(201,168,106,.12);
+    }
+    .manifesto-close { text-align: center; }
+    .manifesto-welcome-label {
+      font-family: var(--sans);
+      font-size: 11px;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: rgba(201,168,106,.5);
+      margin-bottom: 14px;
+    }
+    .manifesto-name {
+      font-family: var(--serif);
+      font-size: clamp(64px, 12vw, 120px);
+      font-weight: 400;
+      font-style: italic;
+      color: var(--gold);
+      line-height: .95;
+      letter-spacing: -.02em;
+      margin-bottom: 16px;
+    }
+    .manifesto-circle-line {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(18px, 2.4vw, 26px);
+      color: rgba(255,255,255,.22);
+    }
+
+    /* ── VALUE PROPS ── */
+    .values {
+      padding: 120px 32px;
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+    .values .eyebrow { margin-bottom: 64px; }
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
+    }
+    .value-card {
+      background: var(--cream);
+      padding: 48px 40px;
+      transition: background .2s;
+    }
+    .value-card:hover { background: #fff; }
+    .value-num {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 16px;
+      color: var(--clay);
+      display: block;
+      margin-bottom: 24px;
+    }
+    .value-title {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 22px;
+      color: var(--ink);
+      margin-bottom: 14px;
+      line-height: 1.2;
+    }
+    .value-body {
+      font-size: 15px;
+      color: var(--ink-soft);
+      line-height: 1.8;
+    }
+
+    /* ── HOW IT WORKS ── */
+    .how {
+      background: var(--cream-2);
+      padding: 120px 32px;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .how-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+    .how .eyebrow { margin-bottom: 56px; }
+    .how h2 {
+      font-family: var(--serif);
+      font-size: clamp(28px, 3.5vw, 42px);
+      font-weight: 400;
+      line-height: 1.15;
+      color: var(--ink);
+      margin-bottom: 72px;
+    }
+    .how h2 em { font-style: italic; color: var(--clay); }
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+    .step {
+      padding-right: 36px;
+      border-right: 1px solid var(--line);
+      margin-right: 36px;
+    }
+    .step:last-child { border-right: none; margin-right: 0; padding-right: 0; }
+    .step-num {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 52px;
+      color: rgba(26,26,26,.10);
+      line-height: 1;
+      display: block;
+      margin-bottom: 20px;
+    }
+    .step-title {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 19px;
+      color: var(--ink);
+      margin-bottom: 10px;
+    }
+    .step-body { font-size: 14px; color: var(--ink-soft); line-height: 1.75; }
+
+    /* ── QUOTES ── */
+    .proof {
+      background: var(--ink);
+      padding: 100px 0 80px;
+      overflow: hidden;
+    }
+    .proof-header {
+      text-align: center;
+      margin-bottom: 60px;
+      padding: 0 32px;
+    }
+    .proof-header .eyebrow { color: rgba(201,168,106,.65); margin-bottom: 20px; }
+    .proof-header h2 {
+      font-family: var(--serif);
+      font-size: clamp(24px, 3.2vw, 36px);
+      font-weight: 400;
+      font-style: italic;
+      color: rgba(255,255,255,.75);
+      line-height: 1.35;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+    .proof-header h2 em { font-style: normal; color: var(--gold); }
+    .marquee-wrap { overflow: hidden; }
+    .marquee-track {
+      display: flex;
+      gap: 20px;
+      width: max-content;
+      animation: scroll 46s linear infinite;
+    }
+    @keyframes scroll { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+    .qcard {
+      width: 310px;
+      flex-shrink: 0;
+      padding: 34px 30px;
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.07);
+    }
+    .qcard-mark {
+      font-family: var(--serif);
+      font-size: 48px;
+      color: rgba(201,168,106,.5);
+      line-height: .75;
+      display: block;
+      margin-bottom: 18px;
+    }
+    .qcard-text {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 15px;
+      color: rgba(255,255,255,.60);
+      line-height: 1.75;
+      margin-bottom: 24px;
+    }
+    .qcard-rule { height: 1px; background: rgba(201,168,106,.2); margin-bottom: 18px; }
+    .qcard-name { font-size: 13px; font-weight: 500; color: rgba(255,255,255,.75); }
+    .qcard-role { font-size: 12px; color: rgba(255,255,255,.30); margin-top: 2px; }
+
+    /* ── FORM ── */
+    #join {
+      padding: 120px 32px;
+      background: var(--cream);
+    }
+    .form-wrap {
+      max-width: 460px;
+      margin: 0 auto;
+    }
+    .form-header { margin-bottom: 56px; }
+    .form-header .eyebrow { margin-bottom: 20px; }
+    .form-header h2 {
+      font-family: var(--serif);
+      font-size: clamp(30px, 4.5vw, 48px);
+      font-weight: 400;
+      line-height: 1.12;
+      color: var(--ink);
+      margin-bottom: 16px;
+    }
+    .form-sub {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 18px;
+      color: var(--ink-soft);
+      line-height: 1.6;
+    }
+    .form-group { margin-bottom: 28px; }
+    label {
+      display: block;
+      font-family: var(--sans);
+      font-size: 11px;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      margin-bottom: 8px;
+    }
+    .label-opt {
+      text-transform: none;
+      letter-spacing: 0;
+      font-style: italic;
+      font-size: 11px;
+      color: #a8a195;
+    }
+    input[type="email"], input[type="text"], textarea {
+      width: 100%;
+      padding: 12px 0;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid var(--line);
+      font-family: var(--sans);
+      font-size: 16px;
+      color: var(--ink);
+      outline: none;
+      transition: border-color .2s;
+      border-radius: 0;
+      appearance: none;
+    }
+    input::placeholder, textarea::placeholder { color: #b8b0a4; }
+    input:focus, textarea:focus { border-bottom-color: var(--clay); }
+    textarea { resize: vertical; min-height: 96px; }
+    .btn-submit {
+      margin-top: 12px;
+      display: inline-block;
+      font-family: var(--sans);
+      font-size: 12px;
+      letter-spacing: .20em;
+      text-transform: uppercase;
+      padding: 14px 28px;
+      border: 1px solid var(--clay);
+      color: var(--clay);
+      background: transparent;
+      cursor: pointer;
+      transition: background .2s, color .2s;
+    }
+    .btn-submit:hover { background: var(--clay); color: var(--cream); }
+    .form-note {
+      margin-top: 20px;
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 14px;
+      color: var(--ink-soft);
+      opacity: .65;
+    }
+
+    /* ── CONFIRMATION ── */
+    #confirmation {
+      display: none;
+      padding: 120px 32px;
+      background: var(--cream);
+    }
+    .confirm-inner {
+      max-width: 520px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .confirm-eyebrow {
+      font-size: 11px;
+      letter-spacing: .26em;
+      text-transform: uppercase;
+      color: var(--clay);
+      margin-bottom: 24px;
+      font-family: var(--sans);
+    }
+    .confirm-h {
+      font-family: var(--serif);
+      font-size: clamp(34px, 5vw, 52px);
+      font-weight: 400;
+      line-height: 1.12;
+      color: var(--ink);
+      margin-bottom: 18px;
+    }
+    .confirm-h em { font-style: italic; color: var(--clay); }
+    .confirm-p {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 18px;
+      color: var(--ink-soft);
+      line-height: 1.7;
+      max-width: 400px;
+      margin: 0 auto 40px;
+    }
+    .confirm-rule { width: 36px; height: 1px; background: var(--clay); margin: 0 auto 40px; opacity: .5; }
+
+    .groupchat-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--sans);
+      font-size: 13px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--cream);
+      background: var(--ink);
+      padding: 14px 28px;
+      text-decoration: none;
+      margin-bottom: 40px;
+      transition: background .2s;
+    }
+    .groupchat-btn:hover { background: var(--clay); }
+
+    .referral-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      padding: 13px 20px;
+      border: 1px solid var(--line);
+      background: var(--cream-2);
+      margin-bottom: 48px;
+      max-width: 100%;
+    }
+    .ref-link-text {
+      font-family: var(--sans);
+      font-size: 13px;
+      color: var(--ink-soft);
+      word-break: break-all;
+    }
+    .copy-btn {
+      background: none;
+      border: none;
+      font-family: var(--sans);
+      font-size: 11px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--clay);
+      cursor: pointer;
+      white-space: nowrap;
+      padding: 0;
+      flex-shrink: 0;
+      transition: color .2s;
+    }
+    .copy-btn:hover { color: var(--clay-deep); }
+
+    .next-steps {
+      text-align: left;
+      border-top: 1px solid var(--line);
+    }
+    .next-steps-label {
+      font-family: var(--sans);
+      font-size: 11px;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      padding: 24px 0 20px;
+    }
+    .ns-item {
+      display: flex;
+      gap: 18px;
+      align-items: flex-start;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .ns-item:last-child { border-bottom: none; }
+    .ns-num {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 20px;
+      color: rgba(26,26,26,.18);
+      flex-shrink: 0;
+      width: 24px;
+      line-height: 1.5;
+    }
+    .ns-text { font-size: 14px; color: var(--ink-soft); line-height: 1.7; }
+    .ns-text strong { color: var(--ink); font-weight: 500; }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 48px 32px 64px;
+      border-top: 1px solid var(--line);
+      background: var(--cream);
+    }
+    .foot {
+      max-width: 1080px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      text-align: center;
+    }
+    .foot-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--serif);
+      font-size: 20px;
+      color: var(--ink);
+      text-decoration: none;
+    }
+    .foot p { font-size: 13px; color: var(--ink-soft); line-height: 1.9; }
+    .foot a { color: var(--ink-soft); text-decoration: none; border-bottom: 1px solid transparent; transition: border-color .2s; }
+    .foot a:hover { border-bottom-color: var(--ink-soft); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .values-grid { grid-template-columns: 1fr; }
+      .steps { grid-template-columns: 1fr 1fr; gap: 48px; }
+      .step { border-right: none; margin-right: 0; padding-right: 0; border-bottom: 1px solid var(--line); padding-bottom: 40px; }
+      .step:last-child { border-bottom: none; padding-bottom: 0; }
+      .values, .how, #join, #confirmation { padding: 80px 24px; }
+      .manifesto { padding: 100px 24px 120px; }
+    }
+    @media (max-width: 600px) {
+      .steps { grid-template-columns: 1fr; }
+      .hero { padding: 100px 0 80px; }
+      .hero-inner { padding: 0 24px; }
+      .nav-inner { padding: 0 20px; }
+      .manifesto-grid { grid-template-columns: repeat(2,1fr); }
+    }
+
+    /* ── HERO PROBLEM ── */
+    .hero-problem {
+      font-family: var(--sans);
+      font-size: 15px;
+      color: var(--ink-soft);
+      max-width: 440px;
+      line-height: 1.7;
+      margin: 20px 0 44px;
+    }
+    .hero-problem em {
+      font-style: normal;
+      color: var(--ink);
+      font-weight: 500;
+    }
+
+    /* ── HERO PROOF ── */
+    .hero-proof {
+      margin-top: 44px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      max-width: 460px;
+    }
+    .hero-proof-item {
+      font-family: var(--sans);
+      font-size: 13px;
+      color: var(--ink-soft);
+      padding-left: 16px;
+      border-left: 1px solid rgba(184,117,95,.35);
+      line-height: 1.5;
+    }
+    .hero-proof-label {
+      font-weight: 600;
+      color: var(--ink);
+      display: block;
+      font-size: 12px;
+      letter-spacing: .04em;
+      margin-bottom: 2px;
+    }
+
+    /* ── FOUNDING PERKS ── */
+    .founding-perks {
+      background: var(--cream-2);
+      border: 1px solid var(--line);
+      padding: 28px 32px;
+      margin-bottom: 40px;
+      text-align: left;
+    }
+    .founding-perks-label {
+      font-family: var(--sans);
+      font-size: 11px;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      margin-bottom: 16px;
+    }
+    .founding-perk {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--line);
+      font-size: 14px;
+      color: var(--ink-soft);
+      line-height: 1.6;
+    }
+    .founding-perk:last-child { border-bottom: none; }
+    .founding-perk strong { color: var(--ink); font-weight: 500; }
+    .perk-mark {
+      font-family: var(--serif);
+      font-style: italic;
+      color: var(--clay);
+      flex-shrink: 0;
+      width: 16px;
+    }
+
+    /* ── SHARED EYEBROW ── */
+    .eyebrow {
+      font-family: var(--sans);
+      font-size: 11px;
+      letter-spacing: .24em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="#" class="brand">
+      <svg class="brand-logo" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="32" cy="32" r="29" stroke="currentColor" stroke-width="1.2"/>
+        <path d="M32 18c3.5 5.5 8 8 8 14.5a8 8 0 1 1-16 0c0-2.6 1.2-4.5 2.6-6.2 1 1.8 1.9 2.6 3.2 2.6-1-3.6.4-7 2.2-10.9z" fill="currentColor"/>
+      </svg>
+      Vui
+    </a>
+    <a href="#join" class="nav-cta">Join the Circle</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <span class="eyebrow" style="color:var(--clay); letter-spacing:.26em;">New York City</span>
+    <p class="hero-problem">
+      Most people want to start investing.<br>
+      <em>Almost no one taught them how</em> — and in New York,<br>
+      everyone acts like they already know.
+    </p>
+    <h1>
+      Live fully.<br>
+      <em>Invest boldly.</em><br>
+      Build wealth<br>together.
+    </h1>
+    <p class="hero-sub">
+      Vui is an NYC community sharing investing knowledge, free finds, and real accountability.
+    </p>
+    <a href="#join" class="btn-primary">Find your Circle</a>
+
+    <div class="hero-proof">
+      <div class="hero-proof-item">
+        <span class="hero-proof-label">Free Events</span>
+        Live richly, for free. Free Pilates, pickleball, matcha pop-ups, drinks, food, philosophy clubs &amp; more — shared by your Circle so you can actually go together.
+      </div>
+      <div class="hero-proof-item">
+        <span class="hero-proof-label">The Exchange</span>
+        ETFs, index funds, crypto, DeFi, stock picks, budgeting, credit — peer-sourced knowledge from NYC members, tailored to where you actually are.
+      </div>
+      <div class="hero-proof-item">
+        <span class="hero-proof-label">Your Circle</span>
+        People at your stage. Your city. Moving forward — together.
+      </div>
+    </div>
+  </div>
+  <div class="scroll-hint" aria-hidden="true">
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <div class="ticker-item"><span class="ticker-dot"></span>Free Pilates · Soho · Saturday 9am</div>
+    <div class="ticker-item"><span class="ticker-dot"></span><span class="ticker-em">$47</span> saved this week by your Circle</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Free matcha pop-up · Lower East Side · this weekend</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>First investment made — the first of many</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Free Philosophy Club · Brooklyn · Thursday 7pm</div>
+    <div class="ticker-item"><span class="ticker-dot"></span><span class="ticker-em">312 people</span> on the NYC waitlist</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Free Pickleball · Prospect Park · Sunday 10am</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Resource shared · ETF starter guide · The Exchange</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Free Pilates · Williamsburg · Sunday 8am</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Free matcha tasting · Nolita · Friday 12pm</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Free Philosophy Club · Manhattan · Tuesday 6pm</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Free Pickleball · Central Park · Saturday 9am</div>
+    <!-- duplicate -->
+    <div class="ticker-item"><span class="ticker-dot"></span>Free Pilates · Soho · Saturday 9am</div>
+    <div class="ticker-item"><span class="ticker-dot"></span><span class="ticker-em">$47</span> saved this week by your Circle</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Free matcha pop-up · Lower East Side · this weekend</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>First investment made — the first of many</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Free Philosophy Club · Brooklyn · Thursday 7pm</div>
+    <div class="ticker-item"><span class="ticker-dot"></span><span class="ticker-em">312 people</span> on the NYC waitlist</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Free Pickleball · Prospect Park · Sunday 10am</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Resource shared · ETF starter guide · The Exchange</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Free Pilates · Williamsburg · Sunday 8am</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Free matcha tasting · Nolita · Friday 12pm</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Free Philosophy Club · Manhattan · Tuesday 6pm</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Free Pickleball · Central Park · Saturday 9am</div>
+  </div>
+</div>
+
+<!-- MANIFESTO -->
+<section class="manifesto">
+  <div class="manifesto-inner">
+    <span class="eyebrow" style="margin-bottom:56px;display:block;">A letter</span>
+
+    <p class="manifesto-lead">
+      This is for the person who lives fully, invests boldly,<br>
+      and builds their wealth — <em>with the community who get it.</em>
+    </p>
+
+    <p class="manifesto-who">Who found the free Pilates class and invested the $40 they saved.</p>
+    <p class="manifesto-who">Who brought their circle to the table and built something none of them could build alone.</p>
+
+    <div class="manifesto-grid">
+      <div class="manifesto-grid-item">The free workout.</div>
+      <div class="manifesto-grid-item">The soft opening.</div>
+      <div class="manifesto-grid-item">The savings circle.</div>
+      <div class="manifesto-grid-item">The first $10 invested.</div>
+      <div class="manifesto-grid-item">The first $100.</div>
+      <div class="manifesto-grid-item">The first thousand.</div>
+    </div>
+
+    <p class="manifesto-pivot">
+      You already knew the full life and the wealthy life weren't opposites.<br>
+      <em>We built the proof.</em>
+    </p>
+
+    <div class="manifesto-close">
+      <p class="manifesto-welcome-label">Welcome to</p>
+      <div class="manifesto-name">Vui.</div>
+      <div class="manifesto-circle-line">Welcome to your Circle.</div>
+    </div>
+  </div>
+</section>
+
+<!-- VALUE PROPS -->
+<section class="values">
+  <span class="eyebrow" style="display:block;margin-bottom:64px;">What lives inside</span>
+  <div class="values-grid">
+    <div class="value-card">
+      <span class="value-num">i.</span>
+      <div class="value-title">Free Events</div>
+      <p class="value-body">Live richly, for free. Free Pilates, pickleball, matcha pop-ups, drinks, food, philosophy clubs &amp; more — shared by your Circle so you can actually go together, not just save the link.</p>
+    </div>
+    <div class="value-card">
+      <span class="value-num">ii.</span>
+      <div class="value-title">The Exchange</div>
+      <p class="value-body">ETFs, index funds, crypto, DeFi, stock picks, credit scores, budgeting basics — real talk from NYC members who've been exactly where you are. Just the knowledge you should have had years ago.</p>
+    </div>
+    <div class="value-card">
+      <span class="value-num">iii.</span>
+      <div class="value-title">Your Circle</div>
+      <p class="value-body">A small group of NYC people at your stage — sharing wins, asking real questions, and growing wealth together. Plus the option to get matched with a mentor who's already made the moves you're working toward.</p>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how">
+  <div class="how-inner">
+    <span class="eyebrow" style="display:block;margin-bottom:56px;">How it works</span>
+    <h2>Three moves.<br><em>Starting now.</em></h2>
+    <div class="steps" style="grid-template-columns:repeat(3,1fr);">
+      <div class="step">
+        <span class="step-num">01</span>
+        <div class="step-title">Join your Circle</div>
+        <p class="step-body">Get matched with a small group of people in NYC at your stage, across the city. Optionally get paired with a mentor who's already made the moves you're working toward. Your Circle is the foundation — every move starts here.</p>
+      </div>
+      <div class="step">
+        <span class="step-num">02</span>
+        <div class="step-title">Browse Free Events</div>
+        <p class="step-body">Browse what your Circle shared today — free Pilates, matcha pop-ups, events, shared resources. Show up together. Every find is a dollar you didn't spend, and a reason to actually leave the apartment.</p>
+      </div>
+      <div class="step">
+        <span class="step-num">03</span>
+        <div class="step-title">Turn savings into investments</div>
+        <p class="step-body">Ask anything in The Exchange — ETFs, crypto, DeFi, stock picks, credit, budgeting. Learn from people who've already made the move. When you're ready, your Circle holds you to it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTES -->
+<section class="proof">
+  <div class="proof-header">
+    <span class="eyebrow" style="display:block;margin-bottom:16px;color:rgba(201,168,106,.6);">From the Circle</span>
+  </div>
+  <div class="marquee-wrap">
+    <div class="marquee-track">
+      <div class="qcard"><span class="qcard-mark">&ldquo;</span><p class="qcard-text">I saved $200 last month just from Circle tips — free Pilates, a matcha pop-up, a resource guide I actually used. Half went straight into my first ETF.</p><div class="qcard-rule"></div><div class="qcard-name">Aaliya T.</div><div class="qcard-role">First-gen investor · Bed-Stuy, Brooklyn</div></div>
+      <div class="qcard"><span class="qcard-mark">&ldquo;</span><p class="qcard-text">My Circle makes it feel possible. I'm not doing this alone anymore. We push each other forward and actually celebrate when something clicks.</p><div class="qcard-rule"></div><div class="qcard-name">Priya M.</div><div class="qcard-role">Grad student · Astoria, Queens</div></div>
+      <div class="qcard"><span class="qcard-mark">&ldquo;</span><p class="qcard-text">I used to think investing was for people with extra money. Vui showed me I had more than I thought — I just needed to see it clearly.</p><div class="qcard-rule"></div><div class="qcard-name">Jasmine R.</div><div class="qcard-role">Nurse + new investor · Harlem</div></div>
+      <div class="qcard"><span class="qcard-mark">&ldquo;</span><p class="qcard-text">My Circle posted a free rooftop event in Williamsburg and I met my accountability partner there. Something I didn't know I needed.</p><div class="qcard-rule"></div><div class="qcard-name">Diana L.</div><div class="qcard-role">Creative director · Crown Heights, Brooklyn</div></div>
+      <div class="qcard"><span class="qcard-mark">&ldquo;</span><p class="qcard-text">I went from never opening my banking app to having a $300 savings goal and my first ETF. My Circle walked me through every step over voice notes. I had $47 invested by Friday.</p><div class="qcard-rule"></div><div class="qcard-name">Kezia O.</div><div class="qcard-role">Recent grad · Upper Manhattan</div></div>
+      <!-- duplicate -->
+      <div class="qcard"><span class="qcard-mark">&ldquo;</span><p class="qcard-text">I saved $200 last month just from Circle tips — free Pilates, a matcha pop-up, a resource guide I actually used. Half went straight into my first ETF.</p><div class="qcard-rule"></div><div class="qcard-name">Aaliya T.</div><div class="qcard-role">First-gen investor · Bed-Stuy, Brooklyn</div></div>
+      <div class="qcard"><span class="qcard-mark">&ldquo;</span><p class="qcard-text">My Circle makes it feel possible. I'm not doing this alone anymore. We push each other forward and actually celebrate when something clicks.</p><div class="qcard-rule"></div><div class="qcard-name">Priya M.</div><div class="qcard-role">Grad student · Astoria, Queens</div></div>
+      <div class="qcard"><span class="qcard-mark">&ldquo;</span><p class="qcard-text">I used to think investing was for people with extra money. Vui showed me I had more than I thought — I just needed to see it clearly.</p><div class="qcard-rule"></div><div class="qcard-name">Jasmine R.</div><div class="qcard-role">Nurse + new investor · Harlem</div></div>
+      <div class="qcard"><span class="qcard-mark">&ldquo;</span><p class="qcard-text">My Circle posted a free rooftop event in Williamsburg and I met my accountability partner there. Something I didn't know I needed.</p><div class="qcard-rule"></div><div class="qcard-name">Diana L.</div><div class="qcard-role">Creative director · Crown Heights, Brooklyn</div></div>
+      <div class="qcard"><span class="qcard-mark">&ldquo;</span><p class="qcard-text">I went from never opening my banking app to having a $300 savings goal and my first ETF. My Circle walked me through every step over voice notes. I had $47 invested by Friday.</p><div class="qcard-rule"></div><div class="qcard-name">Kezia O.</div><div class="qcard-role">Recent grad · Upper Manhattan</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FORM -->
+<section id="join">
+  <div class="form-wrap">
+    <div class="form-header">
+      <span class="eyebrow" style="display:block;margin-bottom:18px;">Join the waitlist · NYC</span>
+      <h2 style="font-family:var(--serif);font-size:clamp(30px,4.5vw,48px);font-weight:400;line-height:1.12;color:var(--ink);margin-bottom:16px;">
+        Welcome to<br>your Circle.
+      </h2>
+      <p class="form-sub">Vui launches in New York City this year. Reserve your founding seat now — we're matching Circles across the city and placing people who join early first.</p>
+    </div>
+    <form id="waitlist-form" novalidate>
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" placeholder="Your name" required autocomplete="name" />
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="you@somewhere.good" required autocomplete="email" />
+      </div>
+      <div class="form-group">
+        <label for="stress">
+          What's on your mind about money?
+          <span class="label-opt"> — optional</span>
+        </label>
+        <textarea id="stress" name="stress" placeholder="Be as real as you want..."></textarea>
+      </div>
+      <button type="submit" class="btn-submit">Save my seat</button>
+      <p class="form-note">Occasional, considered notes. No noise. Unsubscribe anytime.</p>
+    </form>
+  </div>
+</section>
+
+<!-- CONFIRMATION -->
+<div id="confirmation">
+  <div class="confirm-inner">
+    <p class="confirm-eyebrow">Founding Member · Your Circle</p>
+    <h2 class="confirm-h">You're in.<br><em>Welcome to Vui.</em></h2>
+    <p class="confirm-p">
+      We'll be in touch — and there's a seat next to yours,<br>if you want to save it for someone.
+    </p>
+
+    <a href="YOUR_INSTAGRAM_GROUP_LINK" target="_blank" rel="noopener" class="groupchat-btn">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+      Join the group chat on Instagram
+    </a>
+
+    <div class="confirm-rule"></div>
+
+    <div class="founding-perks">
+      <p class="founding-perks-label">What founding members get</p>
+      <div class="founding-perk">
+        <span class="perk-mark">·</span>
+        <span><strong>Priority Circle matching</strong> — placed in the first wave, matched across the city before general launch</span>
+      </div>
+      <div class="founding-perk">
+        <span class="perk-mark">·</span>
+        <span><strong>Founding Member number</strong> — a permanent mark of being here first</span>
+      </div>
+      <div class="founding-perk">
+        <span class="perk-mark">·</span>
+        <span><strong>Early access to the Free Events</strong> — before the app opens to the public</span>
+      </div>
+      <div class="founding-perk">
+        <span class="perk-mark">·</span>
+        <span><strong>Society tier</strong> — founding members enter at our premium tier, at no extra cost, for the first year</span>
+      </div>
+    </div>
+
+    <div class="referral-pill">
+      <span class="ref-link-text" id="referral-link">joinvui.app/seat/founder-xxxx</span>
+      <button class="copy-btn" id="copy-btn" type="button" onclick="copyReferral()">Copy</button>
+    </div>
+
+    <div class="next-steps">
+      <p class="next-steps-label">What happens next</p>
+      <div class="ns-item">
+        <div class="ns-num">1</div>
+        <div class="ns-text"><strong>Check your inbox.</strong> A welcome note is on its way with your Founding Member number and city queue position.</div>
+      </div>
+      <div class="ns-item">
+        <div class="ns-num">2</div>
+        <div class="ns-text"><strong>Meet your Circle.</strong> You'll be matched with a small group of people in New York at your stage — same city, same energy, same moment. You'll also have the option to be paired with a mentor.</div>
+      </div>
+      <div class="ns-item">
+        <div class="ns-num">3</div>
+        <div class="ns-text"><strong>Get early access to the Free Events and The Exchange.</strong> Before the app opens publicly, your Circle starts sharing finds and knowledge. Explore our exclusive resources.</div>
+      </div>
+      <div class="ns-item">
+        <div class="ns-num">4</div>
+        <div class="ns-text"><strong>Make your first move.</strong> The Exchange gives you the knowledge. Your Circle gives you the push. Your wealth starts when you're ready — and you'll be ready sooner than you think.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot">
+    <a href="#" class="foot-brand">
+      <svg width="22" height="22" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="32" cy="32" r="29" stroke="#1a1a1a" stroke-width="1.2"/>
+        <path d="M32 18c3.5 5.5 8 8 8 14.5a8 8 0 1 1-16 0c0-2.6 1.2-4.5 2.6-6.2 1 1.8 1.9 2.6 3.2 2.6-1-3.6.4-7 2.2-10.9z" fill="#1a1a1a"/>
+      </svg>
+      Vui
+    </a>
+    <p>Built with and for New York City — community-powered, city-rooted.</p>
+    <p>
+      <a href="#">Privacy</a> &ensp;·&ensp;
+      <a href="#">Terms</a> &ensp;·&ensp;
+      <a href="mailto:hello@joinvui.app">Contact</a>
+    </p>
+    <p style="opacity:.5;">© 2026 Vui</p>
+  </div>
+</footer>
+
+<script>
+  // Form
+  document.getElementById('waitlist-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var name   = document.getElementById('name').value.trim();
+    var email  = document.getElementById('email').value.trim();
+    var stress = document.getElementById('stress').value.trim();
+    if (!name) { document.getElementById('name').focus(); return; }
+    if (!email || !/.+@.+\..+/.test(email)) {
+      document.getElementById('email').focus();
+      return;
+    }
+    console.log('[Vui waitlist]', { name: name, email: email, stress: stress || null, ts: new Date().toISOString() });
+
+    var code = 'founder-' + Math.random().toString(36).slice(2, 7);
+    document.getElementById('referral-link').textContent = 'joinvui.app/seat/' + code;
+
+    document.getElementById('join').style.display = 'none';
+    var conf = document.getElementById('confirmation');
+    conf.style.display = 'block';
+    conf.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
+  // Copy referral
+  function copyReferral() {
+    var text = document.getElementById('referral-link').textContent;
+    var btn  = document.getElementById('copy-btn');
+    navigator.clipboard.writeText(text).then(function () {
+      btn.textContent = 'Copied ✓';
+      setTimeout(function () { btn.textContent = 'Copy'; }, 1600);
+    }).catch(function () {
+      btn.textContent = 'Copied ✓';
+      setTimeout(function () { btn.textContent = 'Copy'; }, 1600);
+    });
+  }
+</script>
+</body>
+</html>
